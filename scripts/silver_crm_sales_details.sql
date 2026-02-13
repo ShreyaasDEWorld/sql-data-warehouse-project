@@ -138,4 +138,16 @@ SELECT
     END AS sls_price
 FROM bronze.crm_sales_details;
 
+--Post data load  quality check
+select *
+from silver.crm_sales_details
+where sls_sales != sls_quantity * sls_price
+or sls_sales is null or sls_quantity is null or sls_price is null
+or sls_sales <= 0 or sls_quantity <=0 or sls_price <=0;
+
+
+select *
+from silver.crm_sales_details
+where sls_order_dt > sls_ship_dt OR  sls_order_dt > sls_due_dt
+
 
