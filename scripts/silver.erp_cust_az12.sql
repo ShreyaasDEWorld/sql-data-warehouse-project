@@ -15,3 +15,13 @@ case when upper(TRIM(gen)) in ('F','FEMALE') then 'Female'
 	 else 'n/a'
 	 end as gen 
 from bronze.erp_cust_az12
+
+----check
+select 
+distinct 
+case when upper(TRIM(gen)) in ('F','FEMALE') then 'Female'
+	 when upper(TRIM(gen)) in ('M','MALE') then 'Male'
+	 else 'n/a'
+	 end as gen
+from bronze.erp_cust_az12
+where bdate > CURRENT_DATE;
